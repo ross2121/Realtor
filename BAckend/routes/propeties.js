@@ -1,0 +1,10 @@
+import express from "express";
+import { auth,notfound,Errorhandler } from "../middleware/index";
+import {authorizeAgent,propertyowner} from "../middleware/auth";
+import {createproperty,updateproperty,deleteproperty, random,getallproperty} from "../models/property";
+const router=express.Router();
+router.post('/properties',[authorizeAgent,propertyowner],createproperty);
+router.patch('/properties/:id',[authorizeAgent,propertyowner],updateproperty);
+router.delete('/properties/:id',[authorizeAgent,propertyowner],deleteproperty);
+router.get('/properties',getallproperty);
+export default router;
